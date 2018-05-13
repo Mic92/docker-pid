@@ -6,7 +6,7 @@ env:
 install:
   - go get github.com/mitchellh/gox
 script:
-  - gox -os "linux" -output "dist/{{.Dir}}-{{.OS}}-{{.Arch}}" .
+  - gox -ldflags "-s -w" -os "linux" -output "dist/{{.Dir}}-{{.OS}}-{{.Arch}}" .
 deploy:
   provider: releases
   api_key:
