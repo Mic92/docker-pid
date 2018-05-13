@@ -2,7 +2,7 @@ language: go
 go:
   - 1.10.x
 env:
-  - PATH=/home/travis/gopath/bin:$PATH
+  - PATH=/home/travis/gopath/bin:$PATH CGO_ENABLED=0
 install:
   - go get github.com/mitchellh/gox
 script:
