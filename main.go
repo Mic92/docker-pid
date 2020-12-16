@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/docker/docker/client"
+	"github.com/moby/moby/client"
 )
 
 func main() {
@@ -16,11 +16,13 @@ func main() {
 
 	id := os.Args[1]
 
-	cli, err := client.NewEnvClient()
+	cli, err := client.NewClientWithOpts(client.FromEnv)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "failed to create docker client: %s\n", err)
 		os.Exit(1)
 	}
+
+	cli.NegotiateAPIVersion(context.Background())
 
 	container, err := cli.ContainerInspect(context.Background(), id)
 	if err != nil {

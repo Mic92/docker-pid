@@ -1,0 +1,29 @@
+name: Publish
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    name: Publish binaries
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-go@v1
+      with:
+        go-version: '1.15.6'
+    - name: Install gox
+      run: go get github.com/mitchellh/gox
+    - name: Build
+      run: gox -ldflags "-s -w" -os "linux" -output "dist/{{.Dir}}-{{.OS}}-{{.Arch}}" .
+      env:
+        CGO_ENABLED: 0
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: dist/*
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true
