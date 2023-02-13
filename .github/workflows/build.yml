@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: cachix/install-nix-action@v18
+    - uses: cachix/install-nix-action@v19
     - run: nix-shell -I nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixpkgs-unstable.tar.gz --pure -p go -p gox --run "gox -ldflags \"-s -w\" -os linux -output \"dist/{{.Dir}}-{{.OS}}-{{.Arch}}\" ."
       env:
         CGO_ENABLED: 0
