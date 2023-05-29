@@ -2,7 +2,7 @@ module github.com/Mic92/docker-pid
 
 go 1.18
 
-require github.com/moby/moby v23.0.5+incompatible
+require github.com/moby/moby v24.0.2+incompatible
 
 require (
 	github.com/Azure/go-ansiterm v0.0.0-20210617225240-d185dfc1b5a1 // indirect
