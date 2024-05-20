@@ -2,7 +2,7 @@ module github.com/Mic92/docker-pid
 
 go 1.20
 
-require github.com/moby/moby v25.0.4+incompatible
+require github.com/moby/moby v26.1.3+incompatible
 
 require (
 	github.com/Microsoft/go-winio v0.6.1 // indirect
